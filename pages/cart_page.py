@@ -8,6 +8,7 @@ class CartPage(BasePage):
 
     CART_PAGE_HEADER_TEXT = (By.CSS_SELECTOR, ".page-header.action")
     CONTINUE_SHOPPING_LINK = (By.CSS_SELECTOR, "#content_inner > p > a")
+    GOODS_LIST = (By.CSS_SELECTOR, "div.basket_items > div.row > div")
 
     @allure.step("Check cart page header is present")
     def should_be_cart_page_header(self):
@@ -20,3 +21,7 @@ class CartPage(BasePage):
     @allure.step("Go to main page using continue shopping link")
     def go_to_main_page_using_continue_shopping_link(self):
         self.click_element(self.CONTINUE_SHOPPING_LINK)
+
+    @allure.step("Get list of goods")
+    def get_list_of_goods(self) -> list:
+        return self.get_list_of_elements(self.GOODS_LIST, timeout=2)
