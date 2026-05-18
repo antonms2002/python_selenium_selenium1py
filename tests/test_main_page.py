@@ -28,3 +28,4 @@ class TestMainPage:
         cart_page.should_be_continue_shopping_link()
 
 
+

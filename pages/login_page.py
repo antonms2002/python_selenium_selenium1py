@@ -1,6 +1,7 @@
 import allure
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
+from .main_page import MainPage
 
 
 class LoginPage(BasePage):
@@ -46,3 +47,11 @@ class LoginPage(BasePage):
         assert self.is_element_present(self.REGISTER_PASSWORD_FIELD), "Registration password field is not presented."
         assert self.is_element_present(self.REGISTER_PASSWORD_REPEAT_FIELD), "Registration password repeat field is not presented."
         assert self.is_element_present(self.REGISTER_BUTTON), "Registration button is not presented."
+
+    @allure.step("Fill sign up form with valid data. email: {email}, password: {password}, repeat_password: {repeat_password:}")
+    def fill_sign_up_form_valid_data(self, email: str, password: str, repeat_password: str) -> MainPage:
+        self.enter_text(self.REGISTER_EMAIL_FIELD, email)
+        self.enter_text(self.REGISTER_PASSWORD_FIELD, password)
+        self.enter_text(self.REGISTER_PASSWORD_REPEAT_FIELD, repeat_password)
+        self.click_element(self.REGISTER_BUTTON)
+        return MainPage(self.browser)

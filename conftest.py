@@ -8,8 +8,14 @@ from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from pages.product_page import ProductPage
 import logging
+from faker import Faker
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+@pytest.fixture(scope="session")
+def fake():
+    return Faker()
+
 
 # pytest_addoption - это хук pytest, Он автоматически вызывается при старте, добавляет пользовательские опции cmd
 # parser - это экземпляр класса pytest.Parser.
@@ -35,7 +41,7 @@ def browser(request):
     user_language = request.config.getoption("language")
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    options.add_argument("--headless=new")
+    #options.add_argument("--headless=new")
     options.add_argument("--window-size=1920,1080")
     browser = webdriver.Chrome(options=options)
     yield browser
@@ -66,17 +72,17 @@ def pytest_runtest_makereport(item, call):
                 )
 
 @pytest.fixture(scope="function")
-def main_page(browser):
+def main_page(browser) -> MainPage:
     return MainPage(browser)
 
 @pytest.fixture(scope="function")
-def login_page(browser):
+def login_page(browser) -> LoginPage:
     return LoginPage(browser)
 
 @pytest.fixture(scope="function")
-def product_page(browser):
+def product_page(browser) -> ProductPage:
     return ProductPage(browser)
 
 @pytest.fixture(scope="function")
-def cart_page(browser):
+def cart_page(browser) -> CartPage:
     return CartPage(browser)

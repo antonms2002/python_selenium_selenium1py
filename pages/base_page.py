@@ -50,6 +50,12 @@ class BasePage:
         element = self.find_element(locator)
         return element.text
 
+    def enter_text(self, locator: tuple, text: str) -> None:
+        self.logger.info(f"Entering text: '{text}' in field: '{locator}'")
+        field = self.find_element(locator)
+        field.clear()
+        field.send_keys(text)
+
     def is_element_present(self, locator) -> bool:
         self.logger.info(f"Checking if element is present by locator: {locator}")
         try:
