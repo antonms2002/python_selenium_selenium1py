@@ -6,20 +6,21 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from .components.navbar import Navbar
 import logging
+import config
 
 
 class BasePage:
-    base_url = "http://selenium1py.pythonanywhere.com/"
 
     def __init__(self, browser: WebDriver):
         self.browser = browser
-        self.wait = WebDriverWait(self.browser, 5)
+        self.BASE_URL = config.BASE_URL
+        self.wait = WebDriverWait(self.browser,  config.DEFAULT_TIMEOUT)
         self.navbar = Navbar(browser)
         self.logger = logging.getLogger(__name__)
 
     # Common methods for other pages
     def open(self, path = "") -> None:
-        url = f"{self.base_url}{path}"
+        url = f"{self.BASE_URL}{path}"
         self.logger.info(f"Opening {url}")
         with allure.step(f"Open page {url}"):
             self.browser.get(url)

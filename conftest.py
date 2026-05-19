@@ -1,3 +1,5 @@
+from email.policy import default
+
 import pytest
 import allure
 from selenium import webdriver
@@ -25,6 +27,7 @@ def pytest_addoption(parser):
     # action='store' - что делаем со значением
     parser.addoption('--language', action='store', default="en",
                      help="Choose browser language")
+    parser.addoption('--headless', action='store', default='true', help='Enter true / false')
 
 
 @pytest.fixture(scope="function")
@@ -41,7 +44,8 @@ def browser(request):
     user_language = request.config.getoption("language")
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-    #options.add_argument("--headless=new")
+    if request.config.getoption("headless") == "true":
+        options.add_argument("--headless=new")
     options.add_argument("--window-size=1920,1080")
     browser = webdriver.Chrome(options=options)
     yield browser
