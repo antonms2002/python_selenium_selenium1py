@@ -8,7 +8,7 @@ class CartPage(BasePage):
 
     CART_PAGE_HEADER_TEXT = (By.CSS_SELECTOR, ".page-header.action")
     CONTINUE_SHOPPING_LINK = (By.CSS_SELECTOR, "#content_inner > p > a")
-    GOODS_LIST = (By.CSS_SELECTOR, "div.basket_items > div.row > div")
+    GOODS_LIST = (By.CSS_SELECTOR, ".basket-items")
 
     @allure.step("Check cart page header is present")
     def should_be_cart_page_header(self):

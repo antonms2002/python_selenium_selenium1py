@@ -61,7 +61,7 @@ class TestProductPage:
         product_page.navbar.go_to_cart_page()
         cart_page.should_be_cart_page_header()
         cart_page.should_be_continue_shopping_link()
-        assert len(cart_page.get_list_of_goods()) == 0, "Cart is not empty"
+        assert not len(cart_page.get_list_of_goods()), "Cart is not empty"
 
     @pytest.mark.cp
     @pytest.mark.skip(reason="Not valid test. Made for page methods debug")

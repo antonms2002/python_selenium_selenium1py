@@ -7,7 +7,7 @@ from .main_page import MainPage
 class LoginPage(BasePage):
     # URL path Login page
     path = 'accounts/login/'
-    # Локаторы
+    # locators
     LOGIN_EMAIL_FIELD = (By.ID, "id_login-username")
     LOGIN_PASSWORD_FIELD = (By.ID, "id_login-password")
     LOGIN_FORGOT_PASSWORD_LINK = (By.CSS_SELECTOR, "[href$='/password-reset/']")
@@ -18,9 +18,7 @@ class LoginPage(BasePage):
     REGISTER_BUTTON = (By.NAME, "registration_submit")
 
     def open(self, path = None) -> None:
-        if path is None:
-            path = self.path
-        super().open(path=path)
+        super().open(path=self.path)
 
     @allure.step("Check login page is displayed correctly")
     def should_be_login_page(self) -> None:

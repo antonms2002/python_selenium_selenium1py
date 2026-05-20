@@ -5,6 +5,7 @@ import math
 import allure
 
 class ProductPage(BasePage):
+    # default good path
     path = 'catalogue/coders-at-work_207/?promo=newYear2019'
 
     # locators
