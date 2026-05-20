@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from .base_page import BasePage
 
 class CartPage(BasePage):
-    path = 'catalogue/'
+    path = 'basket/'
 
     CART_PAGE_HEADER_TEXT = (By.CSS_SELECTOR, ".page-header.action")
     CONTINUE_SHOPPING_LINK = (By.CSS_SELECTOR, "#content_inner > p > a")
