@@ -53,21 +53,4 @@ The workflow is defined in `.github/workflows/run_tests.yml`.
   - Runs all tests in headless mode
 
 ## Project Structure
-project/
-├── pages/
-│   # Page Object classes (BasePage -> MainPage, LoginPage, ProductPage, CartPage)
-├── components/
-│   # Reusable components (Navbar: login link, go to cart button)
-├── tests/
-│   # Test files (test_main_page, test_product_page, test_login_page)
-├── conftest.py
-│   # Pytest fixtures, hooks (addoption, screenshots, browser setup, logging)
-├── config.py
-│   # Reads environment variables (BASE_URL, DEFAULT_TIMEOUT)
-├── .env.example
-│   # Example of environment variables
-├── pytest.ini
-│   # Pytest configuration (markers, addopts)
-├── requirements.txt
-└── .github/workflows/
-    # GitHub Actions workflows
+Will be added soon
